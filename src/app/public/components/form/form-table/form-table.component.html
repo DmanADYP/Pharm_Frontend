@@ -1,0 +1,51 @@
+<button (click)="details()">Add New</button>
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8 config-table"
+>
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <!-- Deprecated Column -->
+  <ng-container matColumnDef="deprecated">
+    <th mat-header-cell *matHeaderCellDef>Deprecated</th>
+    <td mat-cell *matCellDef="let element">{{ element.deprecated }}</td>
+  </ng-container>
+
+  <!-- Details Column -->
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef>Details</th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="details(element.id)">Details</button>
+    </td>
+  </ng-container>
+
+  <!-- Details Column -->
+  <ng-container matColumnDef="deprecate">
+    <th mat-header-cell *matHeaderCellDef>Deprecate</th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="deprecate(element.id)">Deprecate</button>
+    </td>
+  </ng-container>
+
+  <!-- Details Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="delete(element.id)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

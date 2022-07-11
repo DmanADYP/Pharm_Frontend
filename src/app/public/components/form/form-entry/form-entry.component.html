@@ -1,0 +1,64 @@
+<div class="container">
+  <form
+    class="form"
+    [formGroup]="configForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" name="name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Value</mat-label>
+      <input matInput formControlName="value" name="value" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Deprecated</mat-label>
+      <input matInput formControlName="deprecated" name="deprecated" />
+    </mat-form-field>
+
+    <div class="container">
+      <mat-grid-list cols="3" rowHeight="10:1">
+        <mat-grid-tile>Name</mat-grid-tile>
+        <mat-grid-tile>Value</mat-grid-tile>
+        <mat-grid-tile> </mat-grid-tile>
+      </mat-grid-list>
+      <ul>
+        <li *ngFor="let item of propertiesArray; let i = index">
+          <mat-grid-list cols="3" rowHeight="10:1">
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <input
+                  (input)="updateProps($event, i, 'name')"
+                  matInput
+                  placeholder="Name"
+                  [value]="item.name"
+                /> </mat-form-field
+            ></mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <input
+                  (input)="updateProps($event, i, 'value')"
+                  matInput
+                  placeholder="value"
+                  [value]="item.values"
+                /> </mat-form-field
+            ></mat-grid-tile>
+            <mat-grid-tile>
+              <button (click)="removeProp(i)">Remove</button>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </li>
+      </ul>
+      <button mat-stroked-button color="primary" (click)="addProperty($event)">
+        Add Property<mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+    <div class="form-element">
+      <button mat-stroked-button color="primary" type="submit">
+        Submit<mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>
